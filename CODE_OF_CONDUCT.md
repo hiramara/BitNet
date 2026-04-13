@@ -13,3 +13,5 @@ Resources:
 > **Personal fork note:** This is a personal fork of [microsoft/BitNet](https://github.com/microsoft/BitNet) used for learning and experimentation. For issues related to the original project, please refer to the upstream repository.
 
 > **Contact for this fork:** For questions specific to this fork, open an issue in this repository. Please do not contact Microsoft or the upstream maintainers about changes made here.
+
+> **Scope of this fork:** Experiments here may include modified model configurations, custom inference scripts, and benchmark comparisons. Nothing here should be considered production-ready or officially supported.
