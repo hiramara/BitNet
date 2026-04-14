@@ -17,6 +17,7 @@ option(BITNET_X86_TL2    "bitnet.cpp: use tl2 on x86 platform"    OFF)
 
 # Personal note: I'm running this on an x86 machine, so TL2 is the relevant path for me.
 # Enable BITNET_X86_TL2 at configure time via: cmake -DBITNET_X86_TL2=ON ..
+# Tip: pair with -DCMAKE_BUILD_TYPE=Debug when stepping through inference code in gdb.
 
 set(CMAKE_CXX_STANDARD 17)  # bumped from unset to C++17 for better standard library support
 set(CMAKE_CXX_STANDARD_REQUIRED true)
@@ -42,6 +43,7 @@ endif()
 find_package(Threads REQUIRED)
 
 add_subdirectory(src)
+# Note: llama.cpp server is useful for testing the model via curl; keeping it ON.
 set(LLAMA_BUILD_SERVER ON CACHE BOOL "Build llama.cpp server" FORCE)
 add_subdirectory(3rdparty/llama.cpp)
 
