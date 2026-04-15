@@ -29,10 +29,9 @@ https://github.com/user-attachments/assets/7f46b736-edec-4828-b809-4be780a3e5b1
 >
 > **Note (2025-06):** Tested the 2B model with `-t 12` and it actually edges out `-t 16` on my machine when other background less contention on the efficiency cores. Worth benchmarking on your own system.
 >
+> **Note (2025-07):** After more testing, `-t 14` seems to be the sweet spot on the 7950X — better than both 12 and 16 for sustained inference. My guess is it leaves 2 threads free for the OS and avoids scheduler noise on the last two cores.
+>
 > **Quick launch alias I use (add to `.bashrc`):**
 > ```bash
-> alias bitnet-chat='python run_inference.py -m models/bitnet-2b -t 12 -c 4096 -p "You are a helpful assistant."'
+> alias bitnet-chat='python run_inference.py -m models/bitnet-2b -t 14 -c 2048'
 > ```
-
-## What's New:
-- 01/15/2026 [BitNet CPU Inference Optimization](https://github.com/microsoft/BitNet/blob/main/src/README.md) ![NEW](https://img.shields.i
