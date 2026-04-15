@@ -18,6 +18,7 @@ option(BITNET_X86_TL2    "bitnet.cpp: use tl2 on x86 platform"    OFF)
 # Personal note: I'm running this on an x86 machine, so TL2 is the relevant path for me.
 # Enable BITNET_X86_TL2 at configure time via: cmake -DBITNET_X86_TL2=ON ..
 # Tip: pair with -DCMAKE_BUILD_TYPE=Debug when stepping through inference code in gdb.
+# Tip: use `cmake --build . -- -j$(nproc)` to speed up parallel compilation.
 
 set(CMAKE_CXX_STANDARD 17)  # bumped from unset to C++17 for better standard library support
 set(CMAKE_CXX_STANDARD_REQUIRED true)
@@ -38,6 +39,15 @@ endif()
 
 if (CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     add_compile_options(-fpermissive)
+endif()
+
+# Enable colored diagnostics when using Ninja (makes compiler errors easier to read).
+if (CMAKE_GENERATOR STREQUAL "Ninja")
+    if (CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        add_compile_options(-fdiagnostics-color=always)
+    elseif (CMAKE_C_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+        add_compile_options(-fcolor-diagnostics)
+    endif()
 endif()
 
 find_package(Threads REQUIRED)
@@ -77,7 +87,4 @@ write_basic_package_version_file(
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/LlamaConfig.cmake
               ${CMAKE_CURRENT_BINARY_DIR}/LlamaConfigVersion.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Llama)
-
-set_target_properties(llama PROPERTIES PUBLIC_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/llama.h)
-install(TARGETS llama LIBRARY PUBLIC_HEADER)
+        DESTINATION ${CMAKE_INS
