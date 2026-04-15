@@ -27,12 +27,12 @@ https://github.com/user-attachments/assets/7f46b736-edec-4828-b809-4be780a3e5b1
 >
 > **Tip:** For longer conversations or document summarization tasks, bumping context to `-c 4096` works fine on 32GB RAM — just expect a slight slowdown on the first token. Also, `-t 16` can squeeze out a bit more throughput if the system isn't doing much else.
 >
+> **Note (2025-06):** Tested the 2B model with `-t 12` and it actually edges out `-t 16` on my machine when other background less contention on the efficiency cores. Worth benchmarking on your own system.
+>
 > **Quick launch alias I use (add to `.bashrc`):**
 > ```bash
-> alias bitnet-chat='python run_inference.py -m models/bitnet-2b -t 16 -c 4096 -p "You are a helpful assistant."
+> alias bitnet-chat='python run_inference.py -m models/bitnet-2b -t 12 -c 4096 -p "You are a helpful assistant."'
 > ```
 
 ## What's New:
-- 01/15/2026 [BitNet CPU Inference Optimization](https://github.com/microsoft/BitNet/blob/main/src/README.md) ![NEW](https://img.shields.io/badge/NEW-red)
-- 05/20/2025 [BitNet Official GPU inference kernel](https://github.com/microsoft/BitNet/blob/main/gpu/README.md)
-- 04/14/2025 [BitNet Official 2B Parameter Model on 
+- 01/15/2026 [BitNet CPU Inference Optimization](https://github.com/microsoft/BitNet/blob/main/src/README.md) ![NEW](https://img.shields.i
