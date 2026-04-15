@@ -16,4 +16,4 @@ Resources:
 
 > **Scope of this fork:** Experiments here may include modified model configurations, custom inference scripts, and benchmark comparisons. Nothing here should be considered production-ready or officially supported.
 
-> **Last synced with upstream:** 2025-01-15. If you notice this fork is significantly out of date, feel free to open an issue noting which upstream changes seem relevant.
+> **Last synced with upstream:** 2025-04-10. If you notice this fork is significantly out of date, feel free to open an issue noting which upstream changes seem relevant.
