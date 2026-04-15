@@ -29,9 +29,8 @@ https://github.com/user-attachments/assets/7f46b736-edec-4828-b809-4be780a3e5b1
 >
 > **Note (2025-06):** Tested the 2B model with `-t 12` and it actually edges out `-t 16` on my machine when other background less contention on the efficiency cores. Worth benchmarking on your own system.
 >
-> **Note (2025-07):** After more testing, `-t 14` seems to be the sweet spot on the 7950X — better than both 12 and 16 for sustained inference. My guess is it leaves 2 threads free for the OS and avoids scheduler noise on the last two cores.
->
-> **Quick launch alias I use (add to `.bashrc`):**
-> ```bash
-> alias bitnet-chat='python run_inference.py -m models/bitnet-2b -t 14 -c 2048'
+> **Note (2025-07):** After more testing, `-t 14` seems to be the sweet spot on the 7950X — better than both 12 and 16 for sustained throughput. My go-to command is now:
 > ```
+> ./build/bin/llama-cli -m models/BitNet-b1.58-2B-4T/ggml-model-i2_s.gguf -t 14 -c 2048 -p "Your prompt here"
+> ```
+> Adjust `-c` up to 4096 if you need longer context; RAM usage stays comfortable on 32GB.
